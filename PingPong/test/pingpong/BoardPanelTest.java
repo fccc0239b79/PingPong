@@ -16,8 +16,13 @@ import static org.junit.Assert.*;
  *
  * @author Pawel Szymczyk
  */
-public class PingPongTest {
+public class BoardPanelTest {
     
+    public BoardPanelTest() {
+    }
     
-    
+    @Test
+    public void testGetWidth() {
+        
+    }
 }

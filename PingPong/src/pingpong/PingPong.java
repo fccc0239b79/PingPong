@@ -1,11 +1,13 @@
 package pingpong;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * This is simple Ping Pong Game. 
@@ -21,14 +23,14 @@ public class PingPong extends JFrame {
     public PingPong() {
         
         /* These parameters sets frame on the center of screen. */
-        int screenWidth = (Toolkit.getDefaultToolkit().getScreenSize().width  - getSize().width) / 4;
-        int screenHeight = (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 12;
+        int frameWidth = (Toolkit.getDefaultToolkit().getScreenSize().width  - getSize().width) / 4;
+        int frameHeight = (Toolkit.getDefaultToolkit().getScreenSize().height - getSize().height) / 12;
         
         /* Frame parameters */
         setTitle("Ping Pong");
         setSize(InitValues.FRAME_WIDTH, InitValues.FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocation(screenWidth, screenHeight);
+        setLocation(frameWidth, frameHeight);
         setResizable(false);
         setVisible(true);
         
@@ -41,10 +43,12 @@ public class PingPong extends JFrame {
         
         /* Add Panel */
         
-        //Container panelContainer = getContentPane();
-        //panelContainer.add(new Board());
+        Container panelContainer = getContentPane();
+        panelContainer.add(new BoardPanel());
+        panelContainer.add(new ScorePanel());
+        
     }
-    
+        
     /**
      * This is main method, which run game.
      * @param args nothing.
@@ -55,7 +59,8 @@ public class PingPong extends JFrame {
             @Override
             public void run() {
 		JFrame frame = new PingPong();
-               // frame.show();
+                     frame.setLayout(null);
+               
             }
         });    
     }
