@@ -68,5 +68,4 @@ public abstract class AbstractPanel extends JPanel {
     public abstract void panel();
     
     
-    
 }

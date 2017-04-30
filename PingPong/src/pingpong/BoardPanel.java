@@ -1,7 +1,10 @@
 package pingpong;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -19,11 +22,14 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         setPositionX(BOARD_POS_X);
         setPositionY(BOARD_POS_Y);
         
-      //  System.out.println(this.getPositionX());
-        
         panel();
     }
     
+    /**
+     * This constructor is in tests.
+     * @param width panel width.
+     * @param height panel height.
+     */
     public BoardPanel(int width, int height) {
         
         setWidth(width);
@@ -39,6 +45,16 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         this.setBackground(Color.decode("#006b00"));
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 6));
         this.setVisible(true);
+    }
+    
+   
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.red);
+        g2.setStroke(new BasicStroke(6));
+        g2.drawLine( REDLINE_X_START,REDLINE_Y_HEIGHT,REDLINE_X_END,REDLINE_Y_HEIGHT );
     }
     
 }
