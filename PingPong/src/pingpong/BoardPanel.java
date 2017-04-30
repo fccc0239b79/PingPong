@@ -38,6 +38,9 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         panel();
     }
     
+    /**
+     * This method creates panel.
+     */
     public void panel() {
         newPanel = new JPanel();
        
@@ -47,7 +50,10 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         this.setVisible(true);
     }
     
-   
+   /**
+    * This method draws RedLine.
+    * @param g graphics
+    */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
