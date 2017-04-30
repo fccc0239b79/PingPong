@@ -5,15 +5,25 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * This is Board panel.
  *
  * @author Pawel Szymczyk
  */
-public class BoardPanel extends AbstractPanel implements InitValues{
+public class BoardPanel extends AbstractPanel implements InitValues, ActionListener, KeyListener {
+    
+    private Ball ball;
+    private playerPaddle playerPaddle;
+    
+    private Timer timer;
     
     public BoardPanel() {
         
@@ -22,7 +32,14 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         setPositionX(BOARD_POS_X);
         setPositionY(BOARD_POS_Y);
         
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
+        
+        timer = new Timer(GAME_SPEED, this);
+        
         panel();
+        initGame();
     }
     
     /**
@@ -48,6 +65,14 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         this.setBackground(Color.decode("#006b00"));
         this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 6));
         this.setVisible(true);
+        
+    }
+    
+    public void initGame() {
+       ball = new Ball(BALL_RADIUS, BALL_INITIAL_POS_X, BALL_INITIAL_POS_Y);
+       playerPaddle= new playerPaddle(PADDLE_PLAYER_WIDTH, PADDLE_PLAYER_HEIGHT, PADDLE_PLAYER_INITIAL_POS_X, PADDLE_PLAYER_INITIAL_POS_Y);
+       
+       timer.start();
     }
     
    /**
@@ -61,6 +86,35 @@ public class BoardPanel extends AbstractPanel implements InitValues{
         g2.setColor(Color.red);
         g2.setStroke(new BasicStroke(6));
         g2.drawLine( REDLINE_X_START,REDLINE_Y_HEIGHT,REDLINE_X_END,REDLINE_Y_HEIGHT );
+        
+        ball.paintComponent(g);
+        playerPaddle.paintComponent(g);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
+        ball.move();
+        playerPaddle.move();
+    }
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int code = e.getKeyCode();
+      
+        if(code == KeyEvent.VK_RIGHT) {
+            playerPaddle.right();
+        } else if(code == KeyEvent.VK_LEFT) {
+            playerPaddle.left();
+        }
+    }
+    
+    @Override
+    public void keyTyped(KeyEvent e) {}
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        playerPaddle.setXDir(0);
     }
     
 }

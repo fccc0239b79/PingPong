@@ -5,48 +5,54 @@
  */
 package pingpong;
 
+import java.awt.geom.Rectangle2D;
+
 /**
  *
  * @author Pawel Szymczyk
  */
 public abstract class AbstractElement {
     
-    protected int width;
-    protected int height;
-    protected int positionX;
-    protected int positionY;
+    protected double width;
+    protected double height;
+    protected double positionX;
+    protected double positionY;
     
      // gettors
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
     
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
     
-    public int getPositionX() {
+    public double getPositionX() {
         return positionX;
     }
     
-    public int getPositionY() {
+    public double getPositionY() {
         return positionY;
     }
     
     // settors
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
     
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
     
-    public void setPositionX(int posX) {
+    public void setPositionX(double posX) {
         positionX = posX;
     }
     
-    public void setPositionY(int posY) {
+    public void setPositionY(double posY) {
         positionY = posY;
+    }
+    
+    public Rectangle2D getBounds() {
+       return new Rectangle2D.Double(getPositionX(), getPositionY(), getWidth(), getHeight());
     }
 }
