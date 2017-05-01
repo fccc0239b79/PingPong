@@ -16,15 +16,32 @@ import java.awt.geom.Ellipse2D;
  */
 public class Ball extends AbstractElement implements InitValues {
     
-    private double xDir, yDir;
+    protected double  yDir;
+   
+    
+    public Ball() {
+        double diameter = BALL_RADIUS * 2;
+        
+        xDir = BALL_INITIAL_X_DIR;
+        yDir = -1;
+        
+        width = diameter;
+        height = diameter;
+        positionX = BALL_INITIAL_POS_X;
+        positionY = BALL_INITIAL_POS_Y;
+        
+        resetState();
+    }
     
     public Ball(double radius, double posX, double posY) {
         
-        xDir = 1;
+        double diameter = radius * 2;
+        
+        xDir = BALL_INITIAL_X_DIR;
         yDir = -1;
         
-        width = radius * 2;
-        height = radius * 2;
+        width = diameter;
+        height = diameter;
         positionX = posX;
         positionY = posY;
         
@@ -35,16 +52,19 @@ public class Ball extends AbstractElement implements InitValues {
         return yDir;
     }
     
+    @Override
     public double getXDir() {
-        return xDir;
+        return this.xDir;
     }
     
     public void setYDir(double yDir) {
         this.yDir = yDir;
     }
     
+    @Override
     public void setXDir(double xDir) {
         this.xDir = xDir;
+        
     }
     
     private void resetState(){
@@ -56,15 +76,23 @@ public class Ball extends AbstractElement implements InitValues {
         
       if(positionX <= 0 || positionX > (BOARD_WIDTH - width - 5)) {
           xDir = -xDir;
+        //  setXDir(xDir);
       } else if (positionY < 0 || positionY > (BOARD_HEIGHT  - 20)) {
           yDir = -yDir;
       }
       
       //System.out.println(positionX);
+     // setXDir(xDir);
+      //System.out.println(getXDir());
       
       positionX += xDir;
       positionY += yDir;
+      
+     // System.out.println(getXDir());
+      
     }
+    
+    
     
      public void paintComponent(Graphics g){
         
@@ -76,4 +104,6 @@ public class Ball extends AbstractElement implements InitValues {
         
         
     }
+     
+     
 }

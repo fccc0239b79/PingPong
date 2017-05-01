@@ -29,7 +29,7 @@ public class BallTest {
     @Test
     public void testGetYDir() {
         System.out.println("negative getYDir");
-        Ball instance = new Ball(20, 20, 400, 400);
+        Ball instance = new Ball(20, 400, 400);
         double expResult = -1;
         double result = instance.getYDir();
         assertEquals("This test shows negative direction",expResult, result, 0);
@@ -44,7 +44,7 @@ public class BallTest {
     public void testMove() {
         System.out.println("check x Position");
         
-        Ball instance = new Ball(20,20,400,400);
+        Ball instance = new Ball(20,400,400);
         
         double expResult = 500;
         double actualResult = instance.getPositionX();

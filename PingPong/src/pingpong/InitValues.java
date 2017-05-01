@@ -20,9 +20,9 @@ public interface InitValues {
     public static final int SCORE_POS_X = 650;
     public static final int SCORE_POS_Y = 50;
        
+    public static final int BALL_INITIAL_X_DIR = 1;
     public static final int BALL_INITIAL_POS_X = 250;
     public static final int BALL_INITIAL_POS_Y = 339;
-    
     public static final int BALL_RADIUS = 5;
     
     public static final int PADDLE_PLAYER_WIDTH = 50;
@@ -40,4 +40,7 @@ public interface InitValues {
     public static final int REDLINE_Y_HEIGHT = 346;
     
     public static final int GAME_SPEED = 5;
+    
+    public static final int GAMEOVER_AI_LINE = 20;
+    public static final int GAMEOVER_PLAYER_LINE = 660;
 }

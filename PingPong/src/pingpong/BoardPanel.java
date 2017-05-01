@@ -26,6 +26,8 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
     
     private Timer timer;
     
+    private boolean isGameOver = false;
+    
     public BoardPanel() {
         
         setWidth(BOARD_WIDTH);
@@ -87,6 +89,7 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.red);
         g2.setStroke(new BasicStroke(6));
@@ -97,12 +100,43 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         aiPaddle.paintComponent(g);
     }
     
+    /**
+     * checkCollision - checks collision between:
+     * ball and paddle - if there was a collision, direction of ball is changing on opposite.
+     * ball and line below paddle - if there was a collision, it stops a game, and prints out message "GAME OVER"
+     */
+    public void checkCollision() {
+        
+        if(ball.getBounds().getMaxY() >= GAMEOVER_PLAYER_LINE) {
+            System.out.println(GAMEOVER_PLAYER_LINE);
+           // gameOver();
+        } else if (ball.getBounds().getMinY() <= GAMEOVER_AI_LINE) {
+            System.out.println(GAMEOVER_AI_LINE);
+          // gameOver();
+        }
+        
+        if(ball.getBounds().intersects(playerPaddle.getBounds())) {
+            ball.setYDir(-1);
+          //  System.out.println(ball.getYDir());
+        } else if (ball.getBounds().intersects(aiPaddle.getBounds())) {
+            ball.setYDir(1);
+           // System.out.println(ball.getYDir());
+        }
+        
+    }
+    
+    public void gameOver() {
+        isGameOver = true;
+        timer.stop();
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
         ball.move();
         playerPaddle.move();
         aiPaddle.move();
+        checkCollision();
     }
     
     @Override

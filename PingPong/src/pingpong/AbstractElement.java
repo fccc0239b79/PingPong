@@ -17,6 +17,7 @@ public abstract class AbstractElement {
     protected double height;
     protected double positionX;
     protected double positionY;
+    protected double xDir;
     
      // gettors
     public double getWidth() {
@@ -35,6 +36,10 @@ public abstract class AbstractElement {
         return positionY;
     }
     
+    public double getXDir() {
+        return xDir;
+    }
+    
     // settors
     public void setWidth(double width) {
         this.width = width;
@@ -50,6 +55,11 @@ public abstract class AbstractElement {
     
     public void setPositionY(double posY) {
         positionY = posY;
+    }
+    
+    
+    public void setXDir(double xDir) {
+        this.xDir = xDir;
     }
     
     public Rectangle2D getBounds() {

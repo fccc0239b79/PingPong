@@ -10,11 +10,11 @@ import java.awt.geom.Rectangle2D;
  * 
  * @author Pawel Szymczyk
  */
-public class playerPaddle extends AbstractElement implements InitValues {
+public class PlayerPaddle extends AbstractElement implements InitValues {
     
     private double xDir;
     
-    public playerPaddle(double width, double height, double posX, double posY) {
+    public PlayerPaddle(double width, double height, double posX, double posY) {
         
         this.width = width;
         this.height = height;
@@ -24,14 +24,29 @@ public class playerPaddle extends AbstractElement implements InitValues {
         resetState();
     }
     
+    /**
+     * Method return direction on X axis.
+     * @return direction on X axis.
+     */
+  
+    @Override
     public double getXDir() {
         return xDir;
-    }
-     
+   }
+    
+    /**
+     * Method sets direction on X axis.
+     * @param xDir x direction.
+     */
+    @Override
     public void setXDir(double xDir) {
         this.xDir = xDir;
     }
     
+    /**
+     * Method draws paddle.
+     * @param g graphics.
+     */
     public void paintComponent(Graphics g){
      
         Graphics2D g2d = (Graphics2D) g;
@@ -39,7 +54,10 @@ public class playerPaddle extends AbstractElement implements InitValues {
         Rectangle2D paddle = new Rectangle2D.Double(positionX, positionY, width, height);
         g2d.fill(paddle);        
     }
-     
+    
+    /**
+     * Method responsible for moving paddle.
+     */
     public void move() {
         
         if(positionX <= 0) {
@@ -51,14 +69,23 @@ public class playerPaddle extends AbstractElement implements InitValues {
         positionX += xDir;
     }
     
+    /**
+     * Method allows to move paddle in the left direction.
+     */
     public void left() {
         xDir = -1;
     }
     
+    /**
+     * Method allows to move paddle in the right direction.
+     */
     public void right() {
         xDir = 1; 
     }
-     
+    
+    /**
+     * Method reset position of a paddle.
+     */
     private void resetState(){
         positionX = PADDLE_PLAYER_INITIAL_POS_X;
         positionY = PADDLE_PLAYER_INITIAL_POS_Y;
