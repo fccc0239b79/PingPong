@@ -14,19 +14,13 @@ public abstract class AbstractPanel extends JPanel {
     protected int height;
     protected int positionX;
     protected int positionY;
+    protected int aiScore;
+    protected int playerScore;
     
     protected JPanel newPanel;
     
     public AbstractPanel() {
-       // width =  BOARD_WIDTH;//getWidth();
-       // height = BOARD_HEIGHT;
-       // positionX = 50;
-       // positionY = 50;
-      // System.out.println(getPositionX());
     }
-    
-    
-    
     
     // gettors
     public int getWidth() {
@@ -45,6 +39,10 @@ public abstract class AbstractPanel extends JPanel {
         return positionY;
     }
     
+    public int getAiScore() {
+        return aiScore;
+    }
+    
     // settors
     public void setWidth(int width) {
         this.width = width;
@@ -60,6 +58,10 @@ public abstract class AbstractPanel extends JPanel {
     
     public void setPositionY(int posY) {
         positionY = posY;
+    }
+    
+    public void setAIScore(int scoreAi) {
+        aiScore = scoreAi;
     }
     
     /**

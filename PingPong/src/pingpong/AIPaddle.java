@@ -24,30 +24,11 @@ public class AIPaddle extends AbstractElement implements InitValues  {
         this.positionX = posX;
         this.positionY = posY;
         
-        //xDir = BALL_INITIAL_X_DIR; //paddle x direction is the same as ball
         xDir = ball.getXDir();
-        //System.out.println(xDir);
         
-       
         resetState();
     }
-    
-    /**
-     * Method return direction on X axis.
-     * @return direction on X axis.
-     */
-   // public double getXDir() {
-   //     return xDir;
-   // }
-    
-    /**
-     * Method sets direction on X axis.
-     * @param xDir x direction.
-     */
-   // public void setXDir(double xDir) {
-   //     this.xDir = xDir;
-   // }
-    
+ 
     /**
      * Method draws paddle.
      * @param g graphics.
@@ -71,9 +52,9 @@ public class AIPaddle extends AbstractElement implements InitValues  {
         
         if(ball.getPositionY() <= REDLINE_Y_HEIGHT) {
             
-            System.out.println(this.positionX);
+           // System.out.println(this.positionX);
                 
-         //   if(makeDecision() == true) { // decision
+            if(makeDecision() == true) { // decision
                /*    
                 if(ball.getXDir() == 1) {
                     positionX += xDir;
@@ -105,7 +86,7 @@ public class AIPaddle extends AbstractElement implements InitValues  {
                
              //  System.out.println("ball: " + ball.positionX);
              //  System.out.println("paddle: " + this.positionX);
-         //   }
+           }
             
         } else if(ball.getPositionY() > REDLINE_Y_HEIGHT) {
             resetState();
@@ -146,6 +127,5 @@ public class AIPaddle extends AbstractElement implements InitValues  {
      */
     private void resetState(){
         positionX = PADDLE_AI_INITIAL_POS_X;
-       // positionY = PADDLE_AI_INITIAL_POS_Y;
     }
 }

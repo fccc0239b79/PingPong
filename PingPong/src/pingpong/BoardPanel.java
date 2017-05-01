@@ -105,14 +105,24 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
      * ball and paddle - if there was a collision, direction of ball is changing on opposite.
      * ball and line below paddle - if there was a collision, it stops a game, and prints out message "GAME OVER"
      */
+    int aiscore = 0;
     public void checkCollision() {
         
+        
+        
         if(ball.getBounds().getMaxY() >= GAMEOVER_PLAYER_LINE) {
-            System.out.println(GAMEOVER_PLAYER_LINE);
-           // gameOver();
+            //System.out.println(GAMEOVER_PLAYER_LINE);
+            //gameOver();
+            aiscore++;
+            this.setAIScore(aiscore);
+            System.out.println(this.getAiScore());
+            System.out.println("Score for AI");
         } else if (ball.getBounds().getMinY() <= GAMEOVER_AI_LINE) {
-            System.out.println(GAMEOVER_AI_LINE);
-          // gameOver();
+           // System.out.println(GAMEOVER_AI_LINE);
+           // gameOver();
+           
+           
+           System.out.println("Score for Player");
         }
         
         if(ball.getBounds().intersects(playerPaddle.getBounds())) {
@@ -123,7 +133,10 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
            // System.out.println(ball.getYDir());
         }
         
+        
     }
+    
+    
     
     public void gameOver() {
         isGameOver = true;
