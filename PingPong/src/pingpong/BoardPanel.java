@@ -21,7 +21,8 @@ import javax.swing.Timer;
 public class BoardPanel extends AbstractPanel implements InitValues, ActionListener, KeyListener {
     
     private Ball ball;
-    private playerPaddle playerPaddle;
+    private PlayerPaddle playerPaddle;
+    private AIPaddle aiPaddle;
     
     private Timer timer;
     
@@ -68,9 +69,13 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         
     }
     
+    /**
+     * initGame method creates new game elements and start timer.
+     */
     public void initGame() {
        ball = new Ball(BALL_RADIUS, BALL_INITIAL_POS_X, BALL_INITIAL_POS_Y);
-       playerPaddle= new playerPaddle(PADDLE_PLAYER_WIDTH, PADDLE_PLAYER_HEIGHT, PADDLE_PLAYER_INITIAL_POS_X, PADDLE_PLAYER_INITIAL_POS_Y);
+       playerPaddle = new PlayerPaddle(PADDLE_PLAYER_WIDTH, PADDLE_PLAYER_HEIGHT, PADDLE_PLAYER_INITIAL_POS_X, PADDLE_PLAYER_INITIAL_POS_Y);
+       aiPaddle = new AIPaddle(PADDLE_AI_WIDTH, PADDLE_AI_HEIGHT, PADDLE_AI_INITIAL_POS_X, PADDLE_AI_INITIAL_POS_Y);
        
        timer.start();
     }
@@ -89,6 +94,7 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         
         ball.paintComponent(g);
         playerPaddle.paintComponent(g);
+        aiPaddle.paintComponent(g);
     }
     
     @Override
@@ -96,6 +102,7 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         repaint();
         ball.move();
         playerPaddle.move();
+        aiPaddle.move();
     }
     
     @Override

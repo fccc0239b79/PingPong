@@ -27,13 +27,13 @@ public interface InitValues {
     
     public static final int PADDLE_PLAYER_WIDTH = 50;
     public static final int PADDLE_PLAYER_HEIGHT = 5;
-    public static final int PADDLE_PLAYER_INITIAL_POS_X = 300;
-    public static final int PADDLE_PLAYER_INITIAL_POS_Y = 600;
+    public static final int PADDLE_PLAYER_INITIAL_POS_X = 235;
+    public static final int PADDLE_PLAYER_INITIAL_POS_Y = 650;
     
-    public static final int PADDLE_AI_WIDTH = 0;
-    public static final int PADDLE_AI_HEIGHT = 0;
-    public static final int PADDLE_AI_INITIAL_POS_X = 0;
-    public static final int PADDLE_AI_INITIAL_POS_Y = 0;
+    public static final int PADDLE_AI_WIDTH = 50;
+    public static final int PADDLE_AI_HEIGHT = 5;
+    public static final int PADDLE_AI_INITIAL_POS_X = 235;
+    public static final int PADDLE_AI_INITIAL_POS_Y = 30;
     
     public static final int REDLINE_X_START = 0;
     public static final int REDLINE_X_END = 500;
