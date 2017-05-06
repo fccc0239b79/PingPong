@@ -13,12 +13,17 @@ import javax.swing.JPanel;
 
 import  java.lang.Object;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author Pawel Szymczyk
  */
 public class ScorePanel extends AbstractPanel implements InitValues {
+    
+    JLabel aiLabel= new JLabel("AI: 0");
+    
+    private int score = 0;
     
     public ScorePanel() {
         
@@ -28,6 +33,8 @@ public class ScorePanel extends AbstractPanel implements InitValues {
         setPositionY(SCORE_POS_Y);
                
         panel();
+       System.out.println(score);
+      //  System.out.println("! " + getScore());
         
     }
     
@@ -40,6 +47,7 @@ public class ScorePanel extends AbstractPanel implements InitValues {
         
     }
     
+    @Override
     public void panel() {
         newPanel = new JPanel();
         
@@ -48,9 +56,19 @@ public class ScorePanel extends AbstractPanel implements InitValues {
         this.setBorder(BorderFactory.createLineBorder(Color.black, 6));
         this.setLayout(null);
         this.setVisible(true);
+        
+        
         label();
         
-        
+     
+    }
+    
+    public void setScore(int point) {
+        score = point;
+    }
+    
+    public int getScore() {
+        return score;
     }
     
     public void label() {
@@ -61,14 +79,22 @@ public class ScorePanel extends AbstractPanel implements InitValues {
                scoreLabel.setForeground(Color.red);
                this.add(scoreLabel);
         
-        JLabel aiLabel = new JLabel("AI: 0");
-               aiLabel.setText("AI: " + this.getAiScore());
+              /* 
+               SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                aiLabel.setText("my text"  + score);
+            }
+        });
+             */  
+       // JLabel aiLabel = new JLabel("AI: 0");
+               //aiLabel.setText(String.valueOf(getScore()));
+              // setLabel(String.valueOf(getScore()));
                aiLabel.setBounds(100, 150, 200, 50);
                aiLabel.setFont(new Font("Kalinga", Font.PLAIN, 24));
                aiLabel.setForeground(Color.black);
                this.add(aiLabel);
                
-               System.out.println(this.getAiScore());
                
         JLabel playerLabel = new JLabel("Player: 0");
              //  playerLabel.setText("Player: " + score);
@@ -94,6 +120,19 @@ public class ScorePanel extends AbstractPanel implements InitValues {
         this.repaint();
     }
    
+    
+    public String getLabel() {
+        return aiLabel.getText();
+    }
+    
+    public void setLabel(String st) {
+        
+        
+          
+        
+       // aiLabel.setText(st);
+        //repaint();
+    } 
     
      
     

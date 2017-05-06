@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -23,6 +24,7 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
     private Ball ball;
     private PlayerPaddle playerPaddle;
     private AIPaddle aiPaddle;
+    private ScorePanel score;
     
     private Timer timer;
     
@@ -78,6 +80,8 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
        ball = new Ball(BALL_RADIUS, BALL_INITIAL_POS_X, BALL_INITIAL_POS_Y);
        playerPaddle = new PlayerPaddle(PADDLE_PLAYER_WIDTH, PADDLE_PLAYER_HEIGHT, PADDLE_PLAYER_INITIAL_POS_X, PADDLE_PLAYER_INITIAL_POS_Y);
        aiPaddle = new AIPaddle(PADDLE_AI_WIDTH, PADDLE_AI_HEIGHT, PADDLE_AI_INITIAL_POS_X, PADDLE_AI_INITIAL_POS_Y);
+       score = new ScorePanel();
+       System.out.println("ppp");
        
        timer.start();
     }
@@ -105,7 +109,9 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
      * ball and paddle - if there was a collision, direction of ball is changing on opposite.
      * ball and line below paddle - if there was a collision, it stops a game, and prints out message "GAME OVER"
      */
-    int aiscore = 0;
+   
+  
+    int aiscore = 1;
     public void checkCollision() {
         
         
@@ -113,10 +119,19 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         if(ball.getBounds().getMaxY() >= GAMEOVER_PLAYER_LINE) {
             //System.out.println(GAMEOVER_PLAYER_LINE);
             //gameOver();
+            
+            //aiscore =0;
+            
+            score.setScore(aiscore / 23);
             aiscore++;
-            this.setAIScore(aiscore);
-            System.out.println(this.getAiScore());
-            System.out.println("Score for AI");
+            
+          
+            
+            
+           // score.setLabel(String.valueOf(score.getScore()));
+            System.out.println(score.getScore());
+            
+          //  System.out.println("Score for AI");
         } else if (ball.getBounds().getMinY() <= GAMEOVER_AI_LINE) {
            // System.out.println(GAMEOVER_AI_LINE);
            // gameOver();
@@ -150,6 +165,8 @@ public class BoardPanel extends AbstractPanel implements InitValues, ActionListe
         playerPaddle.move();
         aiPaddle.move();
         checkCollision();
+        
+       
     }
     
     @Override
